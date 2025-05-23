@@ -12,7 +12,7 @@
     }
 
     h1 {
-      color: #800020; /* Vinotinto */
+      color: #800020;
       text-align: center;
     }
 
@@ -61,7 +61,6 @@
     #result {
       margin-top: 20px;
       text-align: center;
-      color: green;
       font-weight: bold;
     }
   </style>
@@ -87,26 +86,14 @@
   <div id="result"></div>
 
   <script>
-    document.getElementById("appointmentForm").addEventListener("submit", function(event) {
-      event.preventDefault(); // Evita que se recargue la página
-
-      // Aquí podrías enviar los datos al backend con fetch
-
-      // Mostrar mensaje de éxito
-      document.getElementById("result").textContent = "La cita fue agendada exitosamente.";
-      document.getElementById("appointmentForm").reset(); // Limpia el formulario
-    });
-
     document.getElementById('appointmentForm').addEventListener('submit', function(event) {
       event.preventDefault();
 
-      // Obtener los valores del formulario
       const patientName = document.getElementById('patientName').value;
       const appointmentDate = document.getElementById('appointmentDate').value;
       const appointmentTime = document.getElementById('appointmentTime').value;
       const reason = document.getElementById('reason').value;
 
-      // Construir el objeto con los datos de la cita
       const appointmentData = {
         patientName,
         appointmentDate,
@@ -116,7 +103,6 @@
 
       console.log("Datos a enviar:", appointmentData);
 
-      // Enviar la solicitud al backend
       fetch('https://hl7-fhir-ehr-solangie-9665.onrender.com/appointment/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -140,7 +126,6 @@
         document.getElementById('result').style.color = 'red';
       });
     });
-
   </script>
 </body>
 </html>
