@@ -3,23 +3,99 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Formulario de Service Request HL7 FHIR</title>
+  <title>Agendar Cita Médica</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      padding: 30px;
+    }
+
+    h1 {
+      color: #800020; /* Vinotinto */
+      text-align: center;
+    }
+
+    form {
+      max-width: 500px;
+      margin: auto;
+      background-color: #fff;
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(128, 0, 32, 0.2);
+      border: 2px solid #800020;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+      color: #800020;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1em;
+    }
+
+    button {
+      background-color: #800020;
+      color: #fff;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1em;
+      cursor: pointer;
+      margin-top: 20px;
+      width: 100%;
+    }
+
+    button:hover {
+      background-color: #a0002d;
+    }
+
+    #result {
+      margin-top: 20px;
+      text-align: center;
+      color: green;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
-  <h1>Formulario de Solicitud de Servicio</h1>
-  <form id="serviceRequestForm">
-    <label for="name">Nombre del Solicitante:</label>
-    <input type="text" id="name" name="name" required><br><br>
+  <h1>Formulario para Agendar Cita Médica</h1>
+  <form id="appointmentForm">
+    <label for="patientName">Nombre del Paciente:</label>
+    <input type="text" id="patientName" name="patientName" required>
 
-    <label for="description">Descripción de la Solicitud:</label>
-    <textarea id="description" name="description" required></textarea><br><br>
+    <label for="appointmentDate">Fecha de la Cita:</label>
+    <input type="date" id="appointmentDate" name="appointmentDate" required>
 
-    <button type="submit">Enviar Solicitud</button>
+    <label for="appointmentTime">Hora de la Cita:</label>
+    <input type="time" id="appointmentTime" name="appointmentTime" required>
+
+    <label for="reason">Motivo de la Cita:</label>
+    <textarea id="reason" name="reason" rows="4" required></textarea>
+
+    <button type="submit">Agendar Cita</button>
   </form>
 
   <div id="result"></div>
 
-  <!-- Se incluye el script para manejar el envío -->
-  <script src="app.js"></script>
+  <script>
+    document.getElementById("appointmentForm").addEventListener("submit", function(event) {
+      event.preventDefault(); // Evita que se recargue la página
+
+      // Aquí podrías enviar los datos al backend con fetch
+
+      // Mostrar mensaje de éxito
+      document.getElementById("result").textContent = "La cita fue agendada exitosamente.";
+      document.getElementById("appointmentForm").reset(); // Limpia el formulario
+    });
+  </script>
 </body>
 </html>
